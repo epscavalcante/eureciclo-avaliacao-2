@@ -16,7 +16,7 @@ class GallonOfWaterController extends Controller
     {
         $input = new FillGallonOfWaterActionInput(
             volume: $request->validated('volume'),
-            bootles: $request->validated('bottles')
+            bottles: $request->validated('bottles')
         );
         $output = $gallonWaterAction->execute($input);
 

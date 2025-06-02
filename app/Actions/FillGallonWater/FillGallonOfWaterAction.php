@@ -10,7 +10,7 @@ class FillGallonOfWaterAction
     {
         $gallon = new GallonOfWater(
             volume: $input->volume,
-            bootles: $input->bootles
+            bottles: $input->bottles
         );
 
         return new FillGallonOfWaterActionOutput(

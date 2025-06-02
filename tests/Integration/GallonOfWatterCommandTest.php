@@ -1,6 +1,6 @@
 <?php
 
-describe('GAllonWatterCommand Test', function () {
+describe('GAllonWaterCommand Test', function () {
 
     test('Deve testar o commando', function () {
         $this->artisan('app:gallon-of-water')
