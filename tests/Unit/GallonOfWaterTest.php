@@ -2,11 +2,11 @@
 
 use App\Entities\GallonOfWater;
 
-describe('Gallon Watter Unit Test', function () {
+describe('Gallon Water Unit Test', function () {
     it('Deve a entidade GallonOfWater', function ($volume, $bottles, $result) {
         $gallonOfWater = new GallonOfWater(
             volume: $volume,
-            bootles: $bottles
+            bottles: $bottles
         );
         expect($gallonOfWater->isFull())->toBe($result[0]);
         expect($gallonOfWater->getLeftOver())->toBe($result[1]);

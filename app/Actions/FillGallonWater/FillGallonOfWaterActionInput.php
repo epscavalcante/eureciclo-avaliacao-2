@@ -6,6 +6,6 @@ class FillGallonOfWaterActionInput
 {
     public function __construct(
         public readonly float $volume,
-        public readonly array $bootles,
+        public readonly array $bottles,
     ) {}
 }

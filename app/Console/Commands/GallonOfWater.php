@@ -32,13 +32,13 @@ class GallonOfWater extends Command
 
         $bottles = [];
         for ($i = 1; $i <= $bottlesCount; $i++) {
-            $bootle = (float) $this->ask("Volume da garrafa {$i}");
-            array_push($bottles, $bootle);
+            $bottle = (float) $this->ask("Volume da garrafa {$i}");
+            array_push($bottles, $bottle);
         }
 
         $input = new FillGallonOfWaterActionInput(
             volume: $volume,
-            bootles: $bottles
+            bottles: $bottles
         );
         $action = new FillGallonOfWaterAction;
         $output = $action->execute($input);
@@ -49,7 +49,7 @@ class GallonOfWater extends Command
         $bottlesOutput = implode(
             separator: ', ',
             array: array_map(
-                callback: fn ($bootle) => "{$bootle}L",
+                callback: fn ($bottle) => "{$bottle}L",
                 array: $bottles
             )
         );

@@ -1,6 +1,6 @@
 <?php
 
-describe('GAllonWatter Api Http Test', function () {
+describe('GAllonWater Api Http Test', function () {
     describe('Receives 422 - Unprocessable Entity', function () {
         test('Enviados nenhum dado', function () {
             $response = $this->getJson(route('gallon_of_water'));

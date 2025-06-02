@@ -4,11 +4,11 @@ use App\Actions\FillGallonWater\FillGallonOfWaterAction;
 use App\Actions\FillGallonWater\FillGallonOfWaterActionInput;
 use App\Actions\FillGallonWater\FillGallonOfWaterActionOutput;
 
-describe('Fill Gallon Watter Unit Test', function () {
-    it('Deve testar o gallon Watter', function ($volume, $bottles, $result) {
+describe('Fill Gallon Water Unit Test', function () {
+    it('Deve testar o gallon Water', function ($volume, $bottles, $result) {
         $input = new FillGallonOfWaterActionInput(
             volume: $volume,
-            bootles: $bottles
+            bottles: $bottles
         );
         $action = new FillGallonOfWaterAction;
         $output = $action->execute($input);

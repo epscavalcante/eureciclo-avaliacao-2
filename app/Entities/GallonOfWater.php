@@ -8,7 +8,7 @@ class GallonOfWater
 
     public function __construct(
         private readonly float $volume,
-        private array $bootles,
+        private array $bottles,
     ) {
         $this->bottlesUsed = [];
 
@@ -17,17 +17,17 @@ class GallonOfWater
 
     private function fill(): void
     {
-        arsort($this->bootles);
-        foreach ($this->bootles as $bottle) {
+        arsort($this->bottles);
+        foreach ($this->bottles as $bottle) {
             if (! $this->isFull() && $bottle <= $this->getNeededVolumeToCompleteGallon()) {
                 $this->incrementVolumeGallon($bottle);
             }
         }
 
-        sort($this->bootles);
+        sort($this->bottles);
         if (! $this->isFull()) {
-            if ($this->bootles[0] >= $this->getNeededVolumeToCompleteGallon()) {
-                $this->incrementVolumeGallon($this->bootles[0]);
+            if ($this->bottles[0] >= $this->getNeededVolumeToCompleteGallon()) {
+                $this->incrementVolumeGallon($this->bottles[0]);
             }
         }
     }
