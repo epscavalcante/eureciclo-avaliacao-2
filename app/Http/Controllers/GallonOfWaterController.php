@@ -19,6 +19,7 @@ class GallonOfWaterController extends Controller
             bootles: $request->validated('bottles')
         );
         $output = $gallonWaterAction->execute($input);
+
         return new GallonOfWaterResource(
             leftOver: $output->leftOver,
             bottles: $output->bottles

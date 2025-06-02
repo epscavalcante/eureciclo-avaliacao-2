@@ -24,7 +24,7 @@ class GallonOfWaterRequest extends FormRequest
         return [
             'volume' => 'required|numeric',
             'bottles' => 'required|array',
-            'bottles.*' => 'numeric'
+            'bottles.*' => 'numeric',
         ];
     }
 }

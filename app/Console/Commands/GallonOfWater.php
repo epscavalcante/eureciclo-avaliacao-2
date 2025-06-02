@@ -40,7 +40,7 @@ class GallonOfWater extends Command
             volume: $volume,
             bootles: $bottles
         );
-        $action = new FillGallonOfWaterAction();
+        $action = new FillGallonOfWaterAction;
         $output = $action->execute($input);
 
         $bottles = $output->bottles;
@@ -54,7 +54,7 @@ class GallonOfWater extends Command
             )
         );
 
-        $leftOverOutput = $output->leftOver . 'L';
+        $leftOverOutput = $output->leftOver.'L';
         $output = "Resposta: [{$bottlesOutput}], sobra: {$leftOverOutput}.";
         $this->line($output);
 

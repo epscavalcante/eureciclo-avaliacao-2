@@ -21,7 +21,7 @@ class GallonOfWaterResource extends JsonResource
     {
         return [
             'left_over' => $this->leftOver,
-            'bottles' => $this->bottles
+            'bottles' => $this->bottles,
         ];
     }
 }

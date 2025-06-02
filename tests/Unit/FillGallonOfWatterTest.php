@@ -10,7 +10,7 @@ describe('Fill Gallon Watter Unit Test', function () {
             volume: $volume,
             bootles: $bottles
         );
-        $action = new FillGallonOfWaterAction();
+        $action = new FillGallonOfWaterAction;
         $output = $action->execute($input);
         expect($output)->toBeInstanceOf(FillGallonOfWaterActionOutput::class);
         expect($output->isFull)->toBe($result[0]);

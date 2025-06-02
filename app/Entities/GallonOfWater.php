@@ -19,7 +19,7 @@ class GallonOfWater
     {
         arsort($this->bootles);
         foreach ($this->bootles as $bottle) {
-            if (!$this->isFull() && $bottle <= $this->getNeededVolumeToCompleteGallon()) {
+            if (! $this->isFull() && $bottle <= $this->getNeededVolumeToCompleteGallon()) {
                 $this->incrementVolumeGallon($bottle);
             }
         }

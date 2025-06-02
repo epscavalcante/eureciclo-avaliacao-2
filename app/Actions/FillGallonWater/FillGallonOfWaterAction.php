@@ -12,6 +12,7 @@ class FillGallonOfWaterAction
             volume: $input->volume,
             bootles: $input->bootles
         );
+
         return new FillGallonOfWaterActionOutput(
             isFull: $gallon->isFull(),
             leftOver: $gallon->getLeftOver(),
