@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .docker/php
+      dockerfile: Dockerfile
+    container_name: eureciclo-avaliacao-2-app
+    volumes:
+      - ./:/var/www
+    ports:
+      - "8000:8000"
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
