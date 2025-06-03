@@ -1,18 +1,18 @@
 <?php
 
-use App\Actions\UploadFileToImport\UploadFileToImportAction;
-use App\Actions\UploadFileToImport\UploadFileToImportActionInput;
-use App\Events\ImportArticleRequestedEvent;
+use App\Actions\UploadZipFile\UploadZipFileAction;
+use App\Actions\UploadZipFile\UploadZipFileActionInput;
+use App\Events\ZipFileUploadedEvent;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 
-describe('UploadFileToImportAction Test', function () {
+describe('UploadZipFileAction Test', function () {
     test('Deve falhar ao enviar um arquivo que não ZIP', function () {
         Storage::fake();
         $file = UploadedFile::fake()->create('fake.pdf', 1234);
-        $action = new UploadFileToImportAction;
-        $input = new UploadFileToImportActionInput(
+        $action = new UploadZipFileAction;
+        $input = new UploadZipFileActionInput(
             pathName: $file->getRealPath(),
             mimeType: $file->getMimeType(),
             size: $file->getSize(),
@@ -24,8 +24,8 @@ describe('UploadFileToImportAction Test', function () {
     test('Deve falhar ao enviar um arquivo maior que o permitido', function () {
         Storage::fake();
         $file = UploadedFile::fake()->create('fake.zip', 99999999999);
-        $action = new UploadFileToImportAction;
-        $input = new UploadFileToImportActionInput(
+        $action = new UploadZipFileAction;
+        $input = new UploadZipFileActionInput(
             pathName: $file->getRealPath(),
             mimeType: $file->getMimeType(),
             size: $file->getSize(),
@@ -38,14 +38,14 @@ describe('UploadFileToImportAction Test', function () {
         Storage::fake();
         Event::fake();
         $file = UploadedFile::fake()->create('fake.zip', 1000);
-        $action = new UploadFileToImportAction;
-        $input = new UploadFileToImportActionInput(
+        $action = new UploadZipFileAction;
+        $input = new UploadZipFileActionInput(
             pathName: $file->getRealPath(),
             mimeType: $file->getMimeType(),
             size: $file->getSize(),
             originalName: $file->getClientOriginalName(),
         );
         $action->execute($input);
-        Event::assertDispatchedTimes(ImportArticleRequestedEvent::class, 1);
+        Event::assertDispatchedTimes(ZipFileUploadedEvent::class, 1);
     });
 });

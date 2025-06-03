@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Actions\ProcessUploadedFile;
+namespace App\Actions\ExtractXmlFromZipFile;
 
-use App\Events\UploadedFileProcessedEvent;
+use App\Events\XmlFilesImportedEvent;
 use App\Models\File;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
 
-class ProcessUploadedFileAction
+class ExtractXmlFromZipFileAction
 {
-    public function execute(ProcessUploadedFileActionInput $input): void
+    public function execute(ExtractXmlFromZipFileActionInput $input): void
     {
         $file = File::query()->findOrFail($input->fileId);
 
@@ -38,6 +38,6 @@ class ProcessUploadedFileAction
 
         $storage->deleteDirectory($extractPath);
 
-        UploadedFileProcessedEvent::dispatch($file);
+        XmlFilesImportedEvent::dispatch($file);
     }
 }

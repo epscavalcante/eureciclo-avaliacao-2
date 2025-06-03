@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\UploadFileToImport;
+namespace App\Actions\UploadZipFile;
 
-class UploadFileToImportActionInput
+class UploadZipFileActionInput
 {
     public function __construct(
         public readonly string $pathName,

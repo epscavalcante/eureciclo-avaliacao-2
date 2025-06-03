@@ -1,19 +1,19 @@
 <?php
 
-use App\Actions\ProcessUploadedFile\ProcessUploadedFileAction;
-use App\Actions\ProcessUploadedFile\ProcessUploadedFileActionInput;
-use App\Events\UploadedFileProcessedEvent;
-use App\Listeners\SendImportImportArticleFromXml;
+use App\Actions\ExtractXmlFromZipFile\ExtractXmlFromZipFileAction;
+use App\Actions\ExtractXmlFromZipFile\ExtractXmlFromZipFileActionInput;
+use App\Events\XmlFilesImportedEvent;
+use App\Listeners\SendArticleToBeImportedFromXml;
 use App\Models\File;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 
-describe('ProcessUploadedFile Action Test', function () {
+describe('ExtractXmlFromZipFile Action Test', function () {
     test('Deve falhar ao não encontrar o arquivo (model) a ser processado', function () {
-        $action = new ProcessUploadedFileAction;
-        $input = new ProcessUploadedFileActionInput(
+        $action = new ExtractXmlFromZipFileAction;
+        $input = new ExtractXmlFromZipFileActionInput(
             fileId: 1,
         );
         $action->execute($input);
@@ -23,8 +23,8 @@ describe('ProcessUploadedFile Action Test', function () {
         $file = File::factory()->create(['driver' => 'public', 'folder' => '0c45fce0-e901-4100-9173-6d8b4ad536d7']);
         Storage::fake($file->driver);
 
-        $action = new ProcessUploadedFileAction;
-        $input = new ProcessUploadedFileActionInput(
+        $action = new ExtractXmlFromZipFileAction;
+        $input = new ExtractXmlFromZipFileActionInput(
             fileId: 1,
         );
         $action->execute($input);
@@ -34,8 +34,8 @@ describe('ProcessUploadedFile Action Test', function () {
         $file = File::factory()->create(['driver' => 'public', 'folder' => '0c45fce0-e901-4100-9173-6d8b4ad536d7']);
         Storage::fake($file->driver);
 
-        $action = new ProcessUploadedFileAction;
-        $input = new ProcessUploadedFileActionInput(
+        $action = new ExtractXmlFromZipFileAction;
+        $input = new ExtractXmlFromZipFileActionInput(
             fileId: 1,
         );
         $action->execute($input);
@@ -52,12 +52,12 @@ describe('ProcessUploadedFile Action Test', function () {
         Storage::fake($fileModel->driver);
         Storage::disk($fileModel->driver)->putFileAs($fileModel->folder, $uploadFile, $fileModel->file_name);
 
-        $action = new ProcessUploadedFileAction;
-        $input = new ProcessUploadedFileActionInput(
+        $action = new ExtractXmlFromZipFileAction;
+        $input = new ExtractXmlFromZipFileActionInput(
             fileId: 1,
         );
         $action->execute($input);
-        Event::assertDispatchedTimes(UploadedFileProcessedEvent::class, 1);
-        Event::assertListening(UploadedFileProcessedEvent::class, SendImportImportArticleFromXml::class);
+        Event::assertDispatchedTimes(XmlFilesImportedEvent::class, 1);
+        Event::assertListening(XmlFilesImportedEvent::class, SendArticleToBeImportedFromXml::class);
     });
 });

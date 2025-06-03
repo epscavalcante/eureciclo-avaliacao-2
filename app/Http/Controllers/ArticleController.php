@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Actions\ListArticles\ListArticlesAction;
 use App\Actions\ListArticles\ListArticlesActionInput;
-use App\Actions\UploadFileToImport\UploadFileToImportAction;
-use App\Actions\UploadFileToImport\UploadFileToImportActionInput;
+use App\Actions\UploadZipFile\UploadZipFileAction;
+use App\Actions\UploadZipFile\UploadZipFileActionInput;
 use App\Http\Requests\ImportArticleRequest;
 use App\Http\Requests\ListArticleRequest;
 use App\Http\Resources\ListArticleResource;
@@ -18,13 +18,13 @@ class ArticleController extends Controller
     {
         /** @var UploadedFile */
         $uploadedFile = $request->validated('file_zip');
-        $uploadInput = new UploadFileToImportActionInput(
+        $uploadInput = new UploadZipFileActionInput(
             pathName: $uploadedFile->getRealPath(),
             mimeType: $uploadedFile->getMimeType(),
             originalName: $uploadedFile->getClientOriginalName(),
             size: $uploadedFile->getSize()
         );
-        $uploadAction = new UploadFileToImportAction;
+        $uploadAction = new UploadZipFileAction;
         $uploadAction->execute($uploadInput);
 
         return response()->noContent();

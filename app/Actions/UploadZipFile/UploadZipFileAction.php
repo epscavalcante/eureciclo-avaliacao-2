@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Actions\UploadFileToImport;
+namespace App\Actions\UploadZipFile;
 
-use App\Events\ImportArticleRequestedEvent;
+use App\Events\ZipFileUploadedEvent;
 use App\Models\File;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class UploadFileToImportAction
+class UploadZipFileAction
 {
-    public function execute(UploadFileToImportActionInput $input): void
+    public function execute(UploadZipFileActionInput $input): void
     {
         if ($input->mimeType !== 'application/zip') {
             throw new Exception('Apenas arquivos ZIP são permitidos.');
@@ -38,6 +38,6 @@ class UploadFileToImportAction
             contents: $stream,
         );
 
-        ImportArticleRequestedEvent::dispatch($fileModel);
+        ZipFileUploadedEvent::dispatch($fileModel);
     }
 }

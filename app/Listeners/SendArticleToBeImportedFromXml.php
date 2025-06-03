@@ -2,13 +2,13 @@
 
 namespace App\Listeners;
 
-use App\Events\UploadedFileProcessedEvent;
+use App\Events\XmlFilesImportedEvent;
 use App\Jobs\ImportArticleFromXmlJob;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Storage;
 
-class SendImportImportArticleFromXml implements ShouldQueue
+class SendArticleToBeImportedFromXml implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -21,7 +21,7 @@ class SendImportImportArticleFromXml implements ShouldQueue
     /**
      * Handle the event.
      */
-    public function handle(UploadedFileProcessedEvent $event): void
+    public function handle(XmlFilesImportedEvent $event): void
     {
         $xmlsPaths = Storage::disk($event->file->driver)->allFiles($event->file->getPathOfXmlFiles());
 

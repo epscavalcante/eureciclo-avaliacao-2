@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\ProcessUploadedFile;
+namespace App\Actions\ExtractXmlFromZipFile;
 
-class ProcessUploadedFileActionInput
+class ExtractXmlFromZipFileActionInput
 {
     public function __construct(
         public readonly int $fileId
