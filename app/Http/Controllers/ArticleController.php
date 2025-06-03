@@ -38,6 +38,7 @@ class ArticleController extends Controller
             perPage: $request->validated('per_page', 10),
         );
         $output = $action->execute($input);
+
         return new ListArticleResource(
             total: $output->total,
             items: $output->items

@@ -15,13 +15,14 @@ class ListArticlesAction
         $articlesTotal = $articlesCollectionModel->total();
         $articleModels = $articlesCollectionModel->items();
         $articlesOutputItems = array_map(
-            callback: fn(Article $article) => new ListArticlesActionItemOutput(
+            callback: fn (Article $article) => new ListArticlesActionItemOutput(
                 id: $article->id,
                 date: $article->data,
                 title: $article->titulo
             ),
             array: $articleModels
         );
+
         return new ListArticlesActionOutput(
             total: $articlesTotal,
             items: $articlesOutputItems

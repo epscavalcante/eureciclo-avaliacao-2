@@ -5,10 +5,10 @@ namespace App\Actions\ListArticles;
 class ListArticlesActionOutput
 {
     /**
-     * @param ListArticlesActionItemOutput[] $items
+     * @param  ListArticlesActionItemOutput[]  $items
      */
     public function __construct(
-        public readonly int $total = 1,
+        public readonly int $total,
         public readonly array $items,
     ) {}
 }

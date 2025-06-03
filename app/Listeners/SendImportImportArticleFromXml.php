@@ -5,8 +5,6 @@ namespace App\Listeners;
 use App\Actions\ImportArticleFromXml\ImportArticleFromXmlAction;
 use App\Actions\ImportArticleFromXml\ImportArticleFromXmlActionInput;
 use App\Events\UploadedFileProcessedEvent;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Storage;
 
 class SendImportImportArticleFromXml
