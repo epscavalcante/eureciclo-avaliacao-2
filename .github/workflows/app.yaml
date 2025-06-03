@@ -22,6 +22,8 @@ jobs:
     - name: Display structure of downloaded files
       run: ls -R
     - name: Execute lint via Pint
+      run: vendor/bin/phpstan analyse
+    - name: Execute lint via Pint
       run: vendor/bin/pint --test
     - name: Execute Unit tests
       run: php artisan test --testsuite=Unit
