@@ -94,6 +94,8 @@ RABBITMQ_VHOST=/
 
 ## ⚡️ Executar a aplicação
 
+Desafio 1
+
 Para utilizar os recursos da aplicação é necessário disponibilizar o servidor e executar os workers para processamento dos uploads.
 
 Iniciar o servidor WEB:
@@ -123,3 +125,28 @@ Ao finalizar o upload do arquivo para o storage, será disparado um evento que i
 Todos esses processos, inicialmente e pferencialmente são feitos de forma assícrona.
 
 Optei por manter a gestão e armazenamento dos Jobs, usando o banco de dados MySQL, como é uma aplicação de apresentação, não achei necessário adicionar mais serviços, o que temos aqui é suficiente para entender como a feature funciona. Em ambientes produtivos, a utilização do Redis, SQS, ou até mesmo o RabbitMQ, são indispensáveis nesse cenário.
+
+
+Desafio 2
+
+Para a execução do desafio dois fiz dois exemplos:
+
+1 - utilizando o CLI (Artisan commands)
+2 - utilizando um endpoint HTTP
+
+
+Artisan command:
+```
+php artisan app:gallon-of-water
+```
+
+ao executar a linha acima irá aparecer no terminal inputs solicitando:
+![Execição do comando do desafio 2](image-1.png)
+
+Endpoint HTTP
+
+[Fazer um GET no endpoint http://localhost:8000/api/gallon-of-water?volume=4&bottles](http://localhost:8000/api/gallon-of-water?volume=4.9&bottles%5B%5D=4.5&bottles%5B%5D=0.4) 
+
+irá retornar o resultado:
+
+![alt text](image-2.png)
