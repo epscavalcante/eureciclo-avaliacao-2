@@ -3,6 +3,7 @@
 use App\Actions\ProcessUploadedFile\ProcessUploadedFileAction;
 use App\Actions\ProcessUploadedFile\ProcessUploadedFileActionInput;
 use App\Events\UploadedFileProcessedEvent;
+use App\Listeners\SendImportImportArticleFromXml;
 use App\Models\File;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\UploadedFile;
@@ -40,14 +41,13 @@ describe('ProcessUploadedFile Action Test', function () {
         $action->execute($input);
     })->throws(Exception::class, 'Erro ao abrir arquivo');
 
-    test('Deve falhar ao não encontrar o arquivo', function () {
+    test('Deve falhar ao processar o arquivo zip enviado', function () {
         $uploadFile = UploadedFile::fake()->create('fake.zip', 250);
         $fileModel = File::factory()->create([
             'driver' => 'public',
             'folder' => '0c45fce0-e901-4100-9173-6d8b4ad536d7',
             'file_name' => $uploadFile->getClientOriginalName(),
         ]);
-
         Event::fake();
         Storage::fake($fileModel->driver);
         Storage::disk($fileModel->driver)->putFileAs($fileModel->folder, $uploadFile, $fileModel->file_name);
@@ -58,5 +58,6 @@ describe('ProcessUploadedFile Action Test', function () {
         );
         $action->execute($input);
         Event::assertDispatchedTimes(UploadedFileProcessedEvent::class, 1);
+        Event::assertListening(UploadedFileProcessedEvent::class, SendImportImportArticleFromXml::class);
     });
 });

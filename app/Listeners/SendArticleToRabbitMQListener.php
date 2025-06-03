@@ -3,9 +3,10 @@
 namespace App\Listeners;
 
 use App\Events\ArticleImportedEvent;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
-class SendArticleToRabbitMQListener
+class SendArticleToRabbitMQListener implements ShouldQueue
 {
     /**
      * Create the event listener.
