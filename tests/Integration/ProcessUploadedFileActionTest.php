@@ -2,7 +2,7 @@
 
 use App\Actions\ProcessUploadedFile\ProcessUploadedFileAction;
 use App\Actions\ProcessUploadedFile\ProcessUploadedFileActionInput;
-use App\Events\UploadedFileProcessed;
+use App\Events\UploadedFileProcessedEvent;
 use App\Models\File;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\UploadedFile;
@@ -57,6 +57,6 @@ describe('ProcessUploadedFile Action Test', function () {
             fileId: 1,
         );
         $action->execute($input);
-        Event::assertDispatchedTimes(UploadedFileProcessed::class, 1);
+        Event::assertDispatchedTimes(UploadedFileProcessedEvent::class, 1);
     });
 });

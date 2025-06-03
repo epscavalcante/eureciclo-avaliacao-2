@@ -2,7 +2,7 @@
 
 use App\Actions\UploadFileToImport\UploadFileToImportAction;
 use App\Actions\UploadFileToImport\UploadFileToImportActionInput;
-use App\Events\ImportArticleRequested;
+use App\Events\ImportArticleRequestedEvent;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
@@ -46,6 +46,6 @@ describe('UploadFileToImportAction Test', function () {
             originalName: $file->getClientOriginalName(),
         );
         $action->execute($input);
-        Event::assertDispatchedTimes(ImportArticleRequested::class, 1);
+        Event::assertDispatchedTimes(ImportArticleRequestedEvent::class, 1);
     });
 });
