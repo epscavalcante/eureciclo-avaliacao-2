@@ -32,7 +32,7 @@ class GallonOfWater
         }
     }
 
-    private function getNeededVolumeToCompleteGallon(): float
+    public function getNeededVolumeToCompleteGallon(): float
     {
         if ($this->isFull()) {
             return 0;
