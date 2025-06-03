@@ -48,3 +48,17 @@ services:
       interval: 10s
       timeout: 10s
       retries: 3
+
+  rabbitmq:
+    build:
+      context: .docker/rabbitmq
+      dockerfile: Dockerfile
+    container_name: eureciclo-avaliacao-2-rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "admin"
+      RABBITMQ_DEFAULT_PASS: "password"
+      RABBITMQ_DEFAULT_VHOST: "/"
