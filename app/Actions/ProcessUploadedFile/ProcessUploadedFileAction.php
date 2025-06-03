@@ -2,7 +2,7 @@
 
 namespace App\Actions\ProcessUploadedFile;
 
-use App\Events\UploadedFileProcessed;
+use App\Events\UploadedFileProcessedEvent;
 use App\Models\File;
 use Exception;
 use Illuminate\Support\Facades\Storage;
@@ -38,6 +38,6 @@ class ProcessUploadedFileAction
 
         $storage->deleteDirectory($extractPath);
 
-        UploadedFileProcessed::dispatch($file);
+        UploadedFileProcessedEvent::dispatch($file);
     }
 }

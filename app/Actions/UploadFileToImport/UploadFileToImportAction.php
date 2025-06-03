@@ -2,7 +2,7 @@
 
 namespace App\Actions\UploadFileToImport;
 
-use App\Events\ImportArticleRequested;
+use App\Events\ImportArticleRequestedEvent;
 use App\Models\File;
 use Exception;
 use Illuminate\Support\Facades\Storage;
@@ -38,6 +38,6 @@ class UploadFileToImportAction
             contents: $stream,
         );
 
-        ImportArticleRequested::dispatch($fileModel);
+        ImportArticleRequestedEvent::dispatch($fileModel);
     }
 }
