@@ -5,8 +5,9 @@ namespace App\Listeners;
 use App\Actions\ProcessUploadedFile\ProcessUploadedFileAction;
 use App\Actions\ProcessUploadedFile\ProcessUploadedFileActionInput;
 use App\Events\ImportArticleRequestedEvent;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ProcessUploadedFileListener
+class ProcessUploadedFileListener implements ShouldQueue
 {
     /**
      * Create the event listener.
